@@ -7,14 +7,82 @@
     <title>Artoo Campus - Controllers</title>
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="ui/appbar/appbar.css">
+    <link rel="stylesheet" href="ui/form/form.css">
   </head>
   
-  <body ng-app="artoo">
+  <body ng-app="artoo"><!-- -->
     <appbar></appbar>
     
-    <!-- load the item controller -->
     
+    <div ng-controller="PlayerCtrl">
+    
+    <div ng-hide="!player">
+      Name : {{::player.name}}
+    </div>
+    
+    <div ng-hide="!player">
+      Level : {{player.level}}
+    </div>
+  
+    <div ng-hide="!player">
+      Exp : {{player.exp}}
+    </div>     
+       
+    <div ng-hide="!player">
+      HP : {{player.hp}} / 100
+    </div>
+    <div ng-hide="!player">
+       Vivo : {{isDead()}}
+    </div>
+        
+     <button ng-click='takeDanger(10)'>Take HIT!</button> 
+     <button ng-click='levelUp()'>Livella!</button>
+      <button ng-click='gainExp(14)'>Dammi Exp</button>
+    <hr>
+    
+    
+    
+    
+
     <!-- bind the item controller to an element -->
+    <div ng-controller="ItemsCtrl">
+
+       <div ng-hide="!item">
+         Nome: <span ng-bind="item.name"></span>
+       </div> 
+     
+      <div ng-hide="!item" ng-show="visibleDescription">
+       Descrizione: <span ng-bind="item.description"></span>
+      </div>
+      <button ng-hide="!item" ng-click='toggleDescription()'>Toggle Description</button>
+       
+     
+      <div ng-hide="!item">
+       Slots: <span ng-bind="item.slots"></span>
+      </div> 
+      
+      <div ng-hide="!item">
+       Fits in bag? {{checkIfFits(item,2)}}
+      </div>
+      
+      <div ng-hide="!item">
+       Classi: <span ng-bind="item.classes"></span>
+      </div>
+      
+      <img ng-hide="!item" ng-src="{{item.image}}"></img><!-- ng-hide="!item" se l'oggetto item non è specificato nescondi-->
+      
+      
+      <button ng-click='dispose()'>Dispose</button>
+    </div>
+    
+    
+    
+    
+ 
+    
+    
+
+    
     
     <!-- interpolate the data to the view -->
     
@@ -26,7 +94,11 @@
     
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="ui/appbar/appbar.js"></script>
-
     <script src="subjects/controllers/app.js"></script>
+     <!-- load the item controller -->
+    <script src="subjects/controllers/item.controller.js"></script>
+        <script src="subjects/controllers/player.controller.js"></script>
+    
+    
   </body>
 </html>

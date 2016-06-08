@@ -21,7 +21,8 @@
     <div ng-init="user = {name: 'John', surname: 'Doe', age: 27}">
       <!-- interpolation -->
       <div>Il mio nome completo è: {{user.name+" "+user.surname}}</div>
-      <div>La mia età è: {{user.age}}</div>
+      <!--<div>La mia età è: {{user.age}}</div>-->
+      <div>La mia età è: <span ng-bind="::user.age"></span></div>
       
       <div ng-init="currentYear = 2016">Ora siamo nell'anno: {{::currentYear}}</div><!-- ONE-TIME BINDING (binda solo uno volta e non segue più l'incremento) -->
        
