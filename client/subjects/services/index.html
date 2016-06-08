@@ -7,22 +7,62 @@
     <title>Artoo Campus - Services</title>
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="ui/appbar/appbar.css">
+    <link rel="stylesheet" href="ui/form/form.css">
   </head>
   
   <body ng-app="artoo">
     <appbar></appbar>
-    
-    <!-- create an items service with the following methods: get, add, remove, etc -->
-    
+    <div ng-controller="PlayerCtrl">
+      <div>Name: {{PlayerSrv.get().name}}</div>
+      <div>Level: {{PlayerSrv.get().level}}</div>
+      <div>HP: {{PlayerSrv.get().hp}}</div>
+      <div>Is dead: {{PlayerSrv.isDead()}}</div>
+        <span ng-hide="PlayerSrv.isDead()">
+          <button ng-hide="PlayerSrv.isDead()" ng-click="PlayerSrv.die()">Die</button>
+          <button ng-hide="PlayerSrv.isDead()" ng-click="PlayerSrv.levelUp()">Level Up!!</button>
+          <button ng-hide="PlayerSrv.isDead()" ng-click="PlayerSrv.takeHit(30)">Take hit</button>
+          <button ng-hide="PlayerSrv.isDead()" ng-click="PlayerSrv.drinkPotion()">Drink potion</button>
+        </span>
+      <button ng-show="PlayerSrv.isDead()" ng-click="PlayerSrv.respawn()">Respawn</button>
+    </div>
+    <hr>
+     <!-- create an items service with the following methods: get, add, remove, etc -->
+    <div ng-controller="ItemsCtrl">
+      <!-- CICLO PER TUTTI GLI OGGETTI DI ItemsSrv.get()-->
+      <div ng-repeat="item in ItemsSrv.get()">
+        <!-- COME PRENDERE L'INDICE-->
+        <div>Item #{{$index + 1}}</div>
+        <div>Name: {{item.name}}</div>
+        <div>Description: {{item.description}}</div>
+        <div>Price : {{item.price}}</div>
+        <div>Races : {{item.races}}</div>
+        <button ng-click="ItemsSrv.updateAvailability(item, +1)">+1</button>
+        <button ng-click="ItemsSrv.updateAvailability(item, -1)">-1</button>
+        <div>Availability : {{item.availability}}</div>
+        <img ng-src="{{item.image}}"</img>
+        <button ng-click="ItemsSrv.remove(item)">Remove</button>
+        <hr>
+      </div>
+      <!--Items : {{items}}-->
+      <!--Items : {{getItems()}}-->
+      <!--Items : {{ItemsSrv.get()}}-->
+    </div>
+   
+   
     <!-- create a controller to expose the service to the view -->
     
-    <!-- create a user service with the following methods: getStatus, takeHit, drinkPotion, useMana, useGem, gainExp, die, respawn -->
+    <!-- create a user service with the following methods: getStatus, takeHit, drinkPotion, gainExp, die, respawn -->
     
     <!-- create a controller to expose the service to the view -->
     
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="ui/appbar/appbar.js"></script>
     <script src="subjects/services/app.js"></script>
+    <script src="subjects/services/items.service.js"></script>
+    <script src="subjects/services/items.controller.js"></script>
+    
+    <script src="subjects/services/player.service.js"></script>
+    <script src="subjects/services/player.controller.js"></script>
     
     <!-- include items service -->
     
