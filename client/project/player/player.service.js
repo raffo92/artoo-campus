@@ -1,7 +1,7 @@
 angular.module('artoo').service('PlayerSrv',function () {
   
-  var player1= {
-    id: 1,
+  var player=[ {
+    id: 0,
     name : "player1",
     sesso: "M",
     classe: "Guerriero",
@@ -12,10 +12,8 @@ angular.module('artoo').service('PlayerSrv',function () {
     mana:6,
     att: 2,
     dif: 3,
-  }
-  
-  var player2= {
-    id: 2,
+  }, {
+    id: 1,
     name : "player2",
     sesso: "F",
     classe: "Mago",
@@ -26,10 +24,8 @@ angular.module('artoo').service('PlayerSrv',function () {
     mana:10,
     att: 4,
     dif: 1,
-  }
-  
-  var player3= {
-    id: 3,
+  }, {
+    id: 2,
     name : "player3",
     sesso: "M",
     classe: "Assasino",
@@ -40,15 +36,15 @@ angular.module('artoo').service('PlayerSrv',function () {
     mana:8,
     att: 3,
     dif: 2,
-  }
+  }]
   
   //--------------------------------------------------------------------
   
       this.get = (id) => { // Prende come parametro l'id del Player da usare
       switch (id){
-        case 1: return player1;
-        case 2: return player2;
-        case 3: return player3;
+        case 1: return player[id];
+        case 2: return player[id];
+        case 3: return player[id];
       }
         
     };

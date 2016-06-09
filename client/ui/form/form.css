@@ -25,6 +25,14 @@ input[type="text"], input[type="password"], textarea {
   transition: all 0.3s cubic-bezier(1, .1, 0, 0.9);
 }
 
+input[type="text"].ng-valid{
+  border-color: green !important
+}
+
+input[type="text"].ng-dirty.ng-invalid{
+  border-color: red !important
+}
+
 textarea {
   height: auto;
   min-height: 200px;
@@ -184,4 +192,9 @@ button {
 
 button:focus {
   outline: none;
+}
+
+button[disabled]{
+  pointer-events: none;
+  opacity: .5;
 }

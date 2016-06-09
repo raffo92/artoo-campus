@@ -13,21 +13,63 @@
   <body ng-app="artoo">
     <appbar></appbar>
     
-    <!-- implement a form for inserting items -->
+    <div ng-controller="ItemsCtrl">
+      
+    <select name="selectItem" ng-options="options.code as options.name for options in ItemsSrv.get()" ng-model="codeItem" ng-change="selectItem(codeItem)"></select><!-- options.code è il valore / options.name è display -->
     
+    
+    
+    <!-- implement a form for inserting items -->
+    <form name="inputForm" ng-submit="save(item, inputForm)" novalidate autocomplete="off">
+      <div class='row'>
+        <input name="name" type="text" ng-model="item.name" required>
+        <label>Nome</label>
+      </div>
+      
+      <div class="row">
+       <textarea name="descripton" row=3 ng-model="item.description"> </textarea>
+       <label>Description</label>
+      </div>
+      
+      <div class="row">
+       <input name="image" type="text" ng-model="item.image" required>
+       <label>Image</label>
+      </div>
+      
+      <button ng-disabled="inputForm.$invalid">SEND</button>
+      <a href ng-click="resetForm()">RESET</a>
+      
+      
+    </form>
     <!-- interpolate results -->
+    <!--<div>Dirty: {{inputForm.$dirty}}</div>-->
+    <!--<div>Pristine: {{inputForm.$pristine}}</div>-->
+    <!--<div>Valid: {{inputForm.$valid}}</div>-->
+    <!--<div>Invalid: {{inputForm.$invalid}}</div>-->
+    <!--<div>Submitted: {{inputForm.$submitted}}</div>-->
+    <!--<div>Error: {{inputForm.$error}}</div>-->
     
     <!-- validate the form -->
-    
     <!-- add a style to valid and invalid fields -->
     
+    <!-- create an items service and extend it in the controller -->
+      
+        <div ng-repeat= "item in ItemsSrv.get()">{{item.name}}
+          <div>Name: {{item.name}}</div>
+          <div>Description: {{item.description}}</div>
+          <div><img ng-src="{{item.image}}" alt="{{item.name}} picture"></div>
+          <!--<button ng-click=ItemsSrv.find({{item.code}})>Modifica</button>-->
+        
+        </div>
+   
     <!-- add a reset button to the form -->
     
-    <!-- create an items service and extend it in the controller -->
-    
+  
+    </div>
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="ui/appbar/appbar.js"></script>
     <script src="subjects/forms/app.js"></script>
+    <script src="subjects/forms/items.service.js"></script>
     <script src="subjects/forms/items.controller.js"></script>
   </body>
 </html>
