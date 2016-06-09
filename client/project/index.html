@@ -10,37 +10,24 @@
   </head>
   
   <body ng-app="artoo" style="margin: 0;">
-    
+    <!--<appbar></appbar>-->
     <div ng-controller="PlayerCtrl">
-      <!--<appbar></appbar>-->
+     
       
-        <!--Player1-->
-        <!--<div style="float: left; width:33%;">-->
-        <!--  <div >Name: {{PlayerSrv.get(1).name}}</div>-->
-        <!--  <div >Class: {{PlayerSrv.get(1).classe}}</div>-->
-        <!--  <div>Level: {{PlayerSrv.get(1).level}}</div>-->
-        <!--  <div>HP: {{PlayerSrv.get(1).hp}}</div>-->
-        <!--  <div>Mana: {{PlayerSrv.get(1).mana}}</div>-->
-        <!--</div>-->
-        <!--Player2-->
-        <!--<div style="float: left; width:33%;">-->
-        <!--  <div>Name: {{PlayerSrv.get(2).name}}</div>-->
-        <!--  <div>Class: {{PlayerSrv.get(2).classe}}</div>-->
-        <!--  <div>Level: {{PlayerSrv.get(2).level}}</div>-->
-        <!--  <div>HP: {{PlayerSrv.get(2).hp}}</div>-->
-        <!--  <div>Mana: {{PlayerSrv.get(2).mana}}</div>-->
-        <!--</div>-->
-        
-        <!--Player3-->
-        <!--<div style="float: left; width:33%;">-->
-        <!--  <div>Name: {{PlayerSrv.get(3).name}}</div>-->
-        <!--  <div>Class: {{PlayerSrv.get(3).classe}}</div>-->
-        <!--  <div>Level: {{PlayerSrv.get(3).level}}</div>-->
-        <!--  <div>HP: {{PlayerSrv.get(3).hp}}</div>-->
-        <!--  <div>Mana: {{PlayerSrv.get(3).mana}}</div>-->
-        <!--</div>-->
-        
       
+       <div ng-repeat= "player in PlayerSrv.get()">
+        <div style="float: left; width:33%;">
+          <div >Name: {{player.name}}</div>
+          <div >Class: {{player.classe}}</div>
+          <div>Level: {{player.level}}</div>
+          <div>HP: {{player.hp}} / {{player.hp_tot}}</div>
+          <div>Mana: {{player.mana}} / {{player.mana_tot}}</div>
+          <div>Gold: {{player.gold}} Gold</div>
+        </div>
+      
+      
+      
+       </div>
     </div>
     <!-- to be removed -->
     <!--<div style="align-items: center; display:flex; flex-direction: column; height: 100vh; justify-content: center;">-->
@@ -50,7 +37,7 @@
     <script src="ui/appbar/appbar.js"></script>
     <script src="project/app.js"></script>
     
-    <script src="project/player/player.service.js"></script>
-    <script src="project/player/player.controller.js"></script>
+    <script src="project/Players/player.service.js"></script>
+    <script src="project/Players/player.controller.js"></script>
   </body>
 </html>
