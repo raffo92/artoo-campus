@@ -5,7 +5,7 @@ angular.module('artoo').service('PlayerSrv', function(){
         hp : 100,
         exp: 17,
         level : 2,
-        race : 'Gnome',
+        race : 'Human',
     }
     
     this.get = () => {
