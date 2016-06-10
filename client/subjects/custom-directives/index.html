@@ -7,10 +7,29 @@
     <title>Artoo Campus - Custom Directives</title>
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="ui/appbar/appbar.css">
+    <link rel="stylesheet" href="ui/form/form.css">
   </head>
   
   <body ng-app="artoo">
     <appbar></appbar>
+    
+    <div ng-controller='CssCtrl'>
+      
+      <div css-adder options="{color: 'red'}">TESTO DI PROVA</div>
+      <css-adder options="{typology: 'dashed'}">TESTO DI PROVA 2</css-adder>
+    
+    </div>
+    
+    
+    <div ng-controller="PlayerCtrl">
+     <h2>Player Logs </h2>
+     <ul>
+       <li ng-repeat="log in PlayerSrv.getLogs()">{{log.text}}, at time {{log.date | date:'hh:MM:ss'}}</li>
+     </ul>
+    </div>
+    
+    <button log="fight">FIGHT!</button> 
+    <button log="drink">DRINK!</button> 
     
     <!-- create a custom directive that applies css properties to an element -->
     
@@ -19,5 +38,10 @@
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="ui/appbar/appbar.js"></script>
     <script src="subjects/custom-directives/app.js"></script>
+    <script src="subjects/custom-directives/css.directive.js"></script>
+    <script src="subjects/custom-directives/css.controller.js"></script>
+    <script src="subjects/custom-directives/log.directive.js"></script>
+    <script src="subjects/custom-directives/player.controller.js"></script>
+    <script src="subjects/custom-directives/player.service.js"></script>  
   </body>
 </html>
