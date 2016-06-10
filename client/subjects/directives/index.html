@@ -7,10 +7,25 @@
     <title>Artoo Campus - Directives</title>
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="ui/appbar/appbar.css">
+    <link rel="stylesheet" href="subjects/directives/style.css">
   </head>
   
   <body ng-app="artoo">
     <appbar></appbar>
+    
+    <div ng-controller= "ItemsCtrl"
+     <ul>
+       <li class="item" ng-repeat = "item in items" ng-class="{unavailable: item.availability ==0, available: item.availability > 0}"> <!-- ng-if="isSuitable(item,'elf')" <!--  [ng-if scorre DOM all'inizio ] -->
+         
+        <p> NAME {{item.name}}</p>
+        <p> Index {{$index}}</p>
+        <p> First? {{$first}}</p><!--Primo-->
+        <p> Last? {{$last}}</p><!--Ultimo-->
+        <p> Odd? {{$odd}} </p><!--Dispari-->
+        <p> Even? {{$even}}</p><!--Pari-->
+         <button ng-hide="!item.availability" ng-click= buy(item)> BUY </button>
+       </li>
+     </ul>
     
     <!-- interpolate all items -->
     
@@ -29,5 +44,7 @@
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="ui/appbar/appbar.js"></script>
     <script src="subjects/directives/app.js"></script>
+    <script src="subjects/directives/items.controller.js"></script>
+   
   </body>
 </html>
