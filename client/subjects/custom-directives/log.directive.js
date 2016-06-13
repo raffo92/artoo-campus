@@ -1,4 +1,5 @@
 angular.module('artoo').directive('log', function($timeout,PlayerSrv){
+    
     return{
      restrict: 'A',
      scope:{
