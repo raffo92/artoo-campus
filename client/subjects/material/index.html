@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width">
     <title>Artoo Campus - Angular Material</title>
+    <link rel="stylesheet" href="node_modules/angular-material/angular-material.css">
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="ui/appbar/appbar.css">
     <!-- load material css -->
@@ -14,20 +15,87 @@
     <appbar></appbar>
     
     <!-- check the typography -->
+    <h1 class="md-display-2">md-display-2</h1>
+    <h2 class="md-title">I m title</h2>
+    <h3 class="md-subhead">I m subhead</h3>
     
+    <button class="md-button md-raised md-accent" > Button </button> <!-- md-warn -->
     <!-- setup a theme -->
     
     <!-- practice the layout -->
+    <hr>
+    <div layout="row" layout-wrap layout-padding layout-margin> <!-- layout-wrap => Manda a capo se non trovano spazio -->
+      <div style="background: orange" flex="32" flex-order="2"> Child #1</div> <!--flex-order => ordina gli elemnti -->
+      <div style="background: blue" flex="32" flex-order="3"> Child #2</div> <!--flex-offset => va in % -->
+      <div style="background: purple" flex="32" flex-order="1"> Child #3</div>
+      
+     <!-- layout-align="center center"> --> <!-- prende: none/start/center/end   =>  1°horizontal-2°vertical  -->
+    </div>
+    
+    <hr>
+    <div layout="column">
+      <div> Child #1</div>
+      <div> Child #2</div>
+      <div> Child #3</div>
+    </div>
     
     <!-- play with some directives & services -->
+    <div ng-controller="matirialCtrl">
+      <div>Date: {{myDate | date: 'dd/MM/yy'}}</div>
+      <div>Select Date: {{minDate | date: 'dd/MM/yy'}}</div>
+      <md-content>
+       <md-datepicker ng-model="myDate" md-placeholder= "Enter Date" md-min-date="minDate" md-date-filter="onlyWeekendsPredicate"></md-datepicker>
+      </md-content>
+    </div>
+    
+    <!-- INPUT -->
+  <form name="form" layout="column" novalidate autocomplete="off" layout-margin layout-padding>
+
+    <md-input-container flex> 
+      <label>Name:</label>
+      <input name="username" type="email" ng-model="user.name" required>
+      
+      <div ng-messages="form.username.$error" role="alert" multiple>
+        <div ng-message="required" class="my-message">User name invalido</div>
+         <div ng-message="email" class="my-message">Email non valida</div>
+      </div>
+    </md-input-container>
+    
+    <!-- ng-blur=Funzione -->
+    
+    <md-input-container flex> 
+      <label>Zip:</label>
+      <input name="age" type="number" ng-model="user.age" ng-pattern="/^[0-9]{5}$/" required>
+      
+      <div ng-messages="form.age.$error" role="alert" multiple>
+        <div ng-message="number" class="my-message">Solo numerico</div>
+        <div ng-message="required" class="my-message">Campo obligatorio</div>
+        <div ng-message="pattern" class="my-message">5 cifre</div>
+      </div>
+    </md-input-container>
+    
+   <label>Progressione:</label>
+   <input type="number" ng-model="pippo">
+   <md-progress-linear md-mode="determinate" value="{{pippo}}" class="md-warn"></md-progress-linear>
+   <md-progress-linear md-mode="determinate" value="{{pippo}}" class="md-primary"></md-progress-linear>
+   <md-button class="md-button md-accent" ng-disabled="form.$invalid">Save</md-button>
+  </form>  
+  
+  
+  
     
     <script src="node_modules/angular/angular.min.js"></script>
     <!-- load aria -->
+    <script src="node_modules/angular-aria/angular-aria.min.js"></script>
     <!-- load animation -->
+    <script src="node_modules/angular-animate/angular-animate.min.js"></script>
     <!-- load messages -->
+    <script src="node_modules/angular-messages/angular-messages.min.js"></script>
     <!-- load material -->
+    <script src="node_modules/angular-material/angular-material.min.js"></script>
     
     <script src="ui/appbar/appbar.js"></script>
     <script src="subjects/material/app.js"></script>
+    <script src="subjects/material/material.controller.js"></script>
   </body>
 </html>
