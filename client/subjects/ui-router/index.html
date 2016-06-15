@@ -12,6 +12,14 @@
   <body ng-app="artoo">
     <appbar></appbar>
     
+    <!-- MI PERMETTE DI CAMBIARE STATO CON UN LINK-->
+    <a ui-sref="contacts">Contacts</a>
+    <a ui-sref="home">Home</a>
+    <a ui-sref="items">Items</a>
+    
+    <page-loader></page-loader>
+   
+    <div ui-view></div>
     <!-- create a menu -->
     
     <!-- create a state for player's details -->
@@ -31,7 +39,18 @@
     <!-- use when() and otherwise() -->
     
     <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+    
     <script src="ui/appbar/appbar.js"></script>
+    <script src="ui/page-loader/page-loader.js" ></script>
+    
     <script src="subjects/ui-router/app.js"></script>
+    <script src="subjects/ui-router/items/items-details.controller.js"></script>
+    <script src="subjects/ui-router/items/items.controller.js"></script>
+    <script src="subjects/ui-router/items/items.service.js"></script>
+    <script src="subjects/ui-router/contacts/contacts.controller.js"></script>
+    
+    <!--<script src="subjects/ui-router/page-loader/page-loader.controller.js" ></script>-->
+    <!--<script src="subjects/ui-router/page-loader/page-loader.component.js" ></script>-->
   </body>
 </html>

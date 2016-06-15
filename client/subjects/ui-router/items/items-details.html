@@ -1,0 +1,8 @@
+<h1>Item Details</h1>
+<div ng-show="ItemsDetailsCtrl.loading">Loading item...</div>
+<div ng-hide="ItemsDetailsCtrl.loading">
+    {{ItemsDetailsCtrl.item}}
+    <div>Name: {{ItemsDetailsCtrl.item.name}}</div>
+    <div>Description : {{ItemsDetailsCtrl.item.description}}</div>
+    <img src="{{ItemsDetailsCtrl.item.image}}">
+</div>
