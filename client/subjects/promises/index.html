@@ -12,16 +12,74 @@
   <body ng-app="artoo">
     <appbar></appbar>
     
-    <!-- create an items resource mapped on a json -->
     
+     <div ng-controller="RedditCtrl">
+       <form ng-submit="query(search)">
+         
+          <h1>Sort</h1>
+          <label>Hot</label>
+          <input type="radio" ng-model="search.sort" value="hot">
+          <label>Top</label>
+          <input type="radio" ng-model="search.sort" value="top">
+          <label>New</label>
+          <input type="radio" ng-model="search.sort" value="new">
+          
+          
+          <input type="text" ng-model="search.q"/>
+          <button type="submit" value="Submit">Cerca</button>
+           
+       </form>
+       <li ng-repeat="reddit in reddits">
+         {{reddit.data.title}}
+       </li>
+    
+    
+    
+    
+    
+    
+    <hr>
+    <!-- create an items resource mapped on a json -->
+    <div ng-controller="UsersCtrl">
+      
+    <form name="form" novalidate autocomplete="off">  
+      <label>Name</label>
+      <input type="text" ng-model="user.name" required/>
+      
+      <label>Email</label>
+      <input type="text" ng-model="user.email" required/>
+      
+      <button ng-click="save(user , form)" ng-disabled="form.$invalid ||loading">Save</button >
+    </form>
+    
+    
+    
+      <div ng-show='loading'>Loading..</div>
+      
+      <div ng-show="userDetails"> User Details: {{userDetails}}</div>
+     
+      <div ng-hide="loading">
+        <ul>
+          <li ng-repeat="user in users" ng-hide="!user.id">
+            <a href ng-click="getDetails(user.id)">{{user.name}}</a>
+            <button  ng-click="remove(user)">Remove</button>
+          </li>
+        </ul>
+      </div>
+      
     <!-- create a reddit resource to play with reddits -->
     <!-- https://www.reddit.com/dev/api#GET_search -->
-    <!-- https://www.reddit.com/search.json -->
-    
+    <!-- https://www.reddit.com/search.json?q=ferrari -->
+    </div>
     <script src="node_modules/angular/angular.min.js"></script>
     <!-- load angular-resource -->
-    
+    <script src="node_modules/angular-resource/angular-resource.min.js"></script>
+     
     <script src="ui/appbar/appbar.js"></script>
     <script src="subjects/promises/app.js"></script>
+    <script src="subjects/promises/users/users.service.js"></script>
+    <script src="subjects/promises/users/users.controller.js"></script>
+    <script src="subjects/promises/reddit/reddit.controller.js"></script>
+    <script src="subjects/promises/reddit/reddit.service.js"></script>
   </body>
 </html>
