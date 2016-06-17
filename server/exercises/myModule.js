@@ -1,16 +1,18 @@
-module.exports = () => {
-  // business logics
-  const name = 'MyModule';
-  const version = '1.0.0';
+module.exports=function (option) { //uso nel return fn e non obj poiche posso passare parametri di confing
+  option= option || {};
+  var robotName= option.robot || 'Alpha Tj!';
   
-  function sayHello(name) {
-    return 'Hello ' + name;
-  };
+  function sayHello (name){
+    return console.log('Hello '+ name + ' ! - from '+robotName);
+  }
   
-  // public API
   return {
-    name: name,
+    name: 'My module',
+    version: '1.0.0',
+    
+    //public API
     sayHello: sayHello,
-    version: version,
-  };
-};
+  }
+  
+  
+}

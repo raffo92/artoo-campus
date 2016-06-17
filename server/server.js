@@ -1,9 +1,9 @@
 const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
-const methodOverride = require('method-override');
-const cookieParser = require('cookie-parser');
-const path = require('path');
+const methodOverride = require('method-override'); //Trasforma i "Verbi" non supportati in get/post/ect 
+const cookieParser = require('cookie-parser'); //Parsa i cookie
+const path = require('path');// prese 2 stringhe mette: / per linx ||  \  per windows
 const development = (process.env.NODE_ENV === 'production') ? false : true;
 const settings = require('./settings');
 
@@ -48,10 +48,19 @@ app.use('/', express.static(path.join(__dirname, '..', 'client')));
 // URL and params
 
 // middlewares: create a timeRequest middleware and an ip filter middleware
+//SPOSTATO IN CARTELLA MIDDLEWARES -> TIMEREQUEST
+// app.use(function(req,res,next){
+//   console.log('Middleware runs');
+//   next();
+// })
+app.use(require('./exercises/middlewares/mean'));
 
 // routers + controllers
 
 // define here your API
+app.use('/api/items', require("./exercises/middlewares/mean"),require("./exercises/items").router);
+app.use('/api/users', require("./exercises/users").router);
+
 // app.use('/api/items', require('./exercises/items').router);
 
 // handle not-found resources
