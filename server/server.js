@@ -6,13 +6,14 @@ const cookieParser = require('cookie-parser'); //Parsa i cookie
 const path = require('path');// prese 2 stringhe mette: / per linx ||  \  per windows
 const development = (process.env.NODE_ENV === 'production') ? false : true;
 const settings = require('./settings');
+const expressValidator= require ('express-validator')
 
-// const mongoose = require('mongoose');
-// mongoose.Promise = require('bluebird');
-// mongoose.connect(settings.mongoUrl, (err) => {
-//   if (err) throw new Error(err);
-//   console.info('Connection to the database was successfull.');
-// });
+const mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
+mongoose.connect(settings.mongoUrl, (err) => {
+  if (err) throw new Error(err);
+  console.info('Connection to the database was successfull.');
+});
 
 // setup server
 const app = express();
@@ -29,6 +30,9 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 // setup the body parser to accept json and populate req.body
 app.use(bodyParser.json());
+
+//Validator
+app.use(expressValidator());
 
 // use HTTP verbs such as PUT or DELETE where the client doesn't support others
 app.use(methodOverride());
@@ -53,12 +57,13 @@ app.use('/', express.static(path.join(__dirname, '..', 'client')));
 //   console.log('Middleware runs');
 //   next();
 // })
-app.use(require('./exercises/middlewares/mean'));
+// app.use(require('./exercises/middlewares/mean'));
 
 // routers + controllers
 
 // define here your API
-app.use('/api/items', require("./exercises/middlewares/mean"),require("./exercises/items").router);
+// app.use('/api/items', require("./exercises/middlewares/mean"),require("./exercises/items").router);
+app.use('/api/items', require("./exercises/items").router);
 app.use('/api/users', require("./exercises/users").router);
 
 // app.use('/api/items', require('./exercises/items').router);

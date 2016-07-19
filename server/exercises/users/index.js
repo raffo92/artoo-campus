@@ -5,6 +5,8 @@
    var controller = require("./users.controller")();
    
    router.get('/',controller.query);
+   router.post('/',controller.create);
+   router.delete('/:id',controller.remove);
    
 //   users.get ('/user',function(req,res){
 //         res.send([{name:'Raffo', email: 'pippo@prova.it'}]);

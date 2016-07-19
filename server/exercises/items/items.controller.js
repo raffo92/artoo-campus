@@ -1,7 +1,19 @@
 module.exports = () => {
   function query(req, res) {
-    console.log(req.timeRequest);
-    res.status(200).send([{name: 'Ascia bipenna',description: 'ascia molto bella'}]);
+    
+    var typology=req.query.typology;
+    
+    var result = (typology ==='first') ? {} : [];
+    
+    req.checkQuery('typology').notEmpty().isInt();
+    var errors = req.validationErrors();
+    
+    if (errors){
+      console.info(errors);
+      return res.status(400).send ('Bad Request');
+    }
+    //console.log(req.timeRequest);
+    res.status(200).send(result);
   }
   
   function save(req, res){
